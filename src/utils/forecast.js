@@ -13,6 +13,7 @@ const forecast = (latitude, longitude, callback) => {
     } else if (body.error) {
       callback('Unable to find location', undefined);
     } else {
+      console.log(body.daily);
       callback(
         undefined,
         body.daily.data[0].summary +
@@ -20,7 +21,13 @@ const forecast = (latitude, longitude, callback) => {
           body.currently.temperature +
           ' degress out. There is a ' +
           body.currently.precipProbability +
-          '% chance of rain.'
+          '% chance of rain.' +
+          '\n' +
+          '\nThe minimalist temperature of the day will be ' +
+          body.daily.data[0].temperatureLow +
+          ' degress and on the contrary, the highest temperature of the day will be ' +
+          body.daily.data[0].temperatureLow +
+          ' degress.'
       );
     }
   });
